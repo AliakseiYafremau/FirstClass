@@ -1,1 +1,4 @@
 .env
+.idea
+venv
+/back/db.sqlite3
