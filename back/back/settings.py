@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+from dotenv import load_dotenv, find_dotenv
+
+
+load_dotenv(find_dotenv('../.env'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -141,3 +145,16 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+# Если мы собираемся использовать SSl, то порт будет другой.
+# EMAIL_USE_SSL = True
+# EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = f"{os.getenv('ACCOUNT_NAME')}"
+# Здесь должен быть пароль приложения, а не аккаунта.
+EMAIL_HOST_PASSWORD = f"{os.getenv('ACCOUNT_PASSWORD')}"
+DEFAULT_FROM_EMAIL = f"{os.getenv('ACCOUNT_NAME')}@gmail.com"
