@@ -32,7 +32,7 @@ def notify_about_new_client(sender, instance, created, **kwargs):
             subject='First Class',
             body='',
             from_email=DEFAULT_FROM_EMAIL,
-            to=['447654972@mail.ru'],
+            to=['example@mail.ru'],
         )
 
         # Указание контента
