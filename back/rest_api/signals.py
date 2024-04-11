@@ -13,16 +13,32 @@ def notify_about_new_client(sender, instance, created, **kwargs):
 
     if created:
         # Создание содержимого письма на основе html шаблона
-        html_content = render_to_string(
+        context = {
+            'name': instance.name,
+            'surname': instance.fam,
+            'create_time': instance.add_time.strftime('%d-%m-%Y %H:%M:%S'),
+            'phone': instance.phone,
+            'email': instance.email,
+        }
+        html_content1 = render_to_string(
             template_name='email_sending/email_content.html',
-            context={
-                'name': instance.name,
-                'surname': instance.fam,
-            },
+            context=context,
         )
 
-        # Создание письма
-        message = EmailMultiAlternatives(
+        html_content2 = render_to_string(
+            template_name='email_sending/email_to_client.html',
+            context=context,
+        )
+
+        # Создание письма менеджеру
+        manager_message = EmailMultiAlternatives(
+            subject='First Class',
+            body='',
+            from_email=DEFAULT_FROM_EMAIL,
+            to=[DEFAULT_FROM_EMAIL],
+        )
+        # Создание письма клиенту
+        client_message = EmailMultiAlternatives(
             subject='First Class',
             body='',
             from_email=DEFAULT_FROM_EMAIL,
@@ -30,7 +46,9 @@ def notify_about_new_client(sender, instance, created, **kwargs):
         )
 
         # Указание контента
-        message.attach_alternative(html_content, 'text/html')
+        manager_message.attach_alternative(html_content1, 'text/html')
+        client_message.attach_alternative(html_content2, 'text/html')
 
-        # Отправка письма
-        message.send()
+        # Отправка писем
+        manager_message.send()
+        client_message.send()

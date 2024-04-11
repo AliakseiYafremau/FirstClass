@@ -37,12 +37,12 @@ TYPE = [
 
 # Контактная информация клиента
 class Client(models.Model):   
-    name = models.CharField(max_length=50, verbose_name='Имя')
-    fam = models.CharField(max_length=50, verbose_name='Фамилия')
-    otc = models.CharField(max_length=50, null=True, blank=True, verbose_name='Отчество') # не обязательное поле
+    name = models.CharField(max_length=10, verbose_name='Имя')
+    fam = models.CharField(max_length=20, verbose_name='Фамилия')
+    # otc = models.CharField(max_length=50, null=True, blank=True, verbose_name='Отчество') # не обязательное поле
     email = models.EmailField()
-    phone = models.TextField(max_length=50, null=True, blank=True, verbose_name='Телефон') # не обязательное поле
+    phone = models.TextField(max_length=15, null=True, verbose_name='Телефон')
     add_time = models.DateTimeField(auto_now_add=True) # время добавления записи (ставиться автоматически)
-    number = models.CharField(max_length=3, choices=NUMBER, verbose_name='Количество путешественников')
-    continent = models.CharField(max_length=2, choices=CONTINENT, verbose_name='Континент')
-    type = models.CharField(max_length=3, choices=TYPE, verbose_name='Тип путешествия')
+    # number = models.CharField(max_length=3, choices=NUMBER, verbose_name='Количество путешественников')
+    # continent = models.CharField(max_length=2, choices=CONTINENT, verbose_name='Континент')
+    # type = models.CharField(max_length=3, choices=TYPE, verbose_name='Тип путешествия')
