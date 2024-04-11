@@ -5,8 +5,9 @@
       <sourceFolder url="file://$MODULE_DIR$/back" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/back/back" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/back/rest_api" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.10 (Hackaton)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.12 (BackEnd)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
