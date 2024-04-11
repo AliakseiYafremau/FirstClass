@@ -5,6 +5,8 @@ from rest_api.models import Client
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from back.settings import DEFAULT_FROM_EMAIL
+
 
 class ClientSignalTest(TestCase):
     def test_notify_about_new_client(self):
@@ -14,15 +16,14 @@ class ClientSignalTest(TestCase):
         # Создаем нового клиента
         client = Client.objects.create(name='Ivan',
                                        fam='Ivanov',
-                                       otc='Ivanovich',
                                        email='example@mail.ru',
-                                       phone='123456789',
-                                       number='5',
-                                       continent='AS',
-                                       type='FAM')
+                                       phone='123456789',)
 
-        # Проверяем, что после создания клиента было отправлено одно письмо
-        self.assertEqual(len(mail.outbox), 1)
+
+        # Проверяем, что после создания клиента было отправлено два письма
+        self.assertEqual(len(mail.outbox), 2)
+        self.assertEqual(mail.outbox[0].to[0], DEFAULT_FROM_EMAIL)
+        self.assertEqual(mail.outbox[1].to[0], client.email)
 
     def tearDown(self):
         mail.outbox.clear()
