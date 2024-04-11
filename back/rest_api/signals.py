@@ -10,12 +10,6 @@ from back.settings import DEFAULT_FROM_EMAIL
 @receiver(post_save, sender=Client)
 def notify_about_new_client(sender, instance, created, **kwargs):
     """ Сигнал фиксирующий создание нового клиента """
-    #send_mail(
-    #    subject='ExampleSubject',
-    #    message='ExampleMessage',
-    #    from_email=DEFAULT_FROM_EMAIL,
-    #    recipient_list=['examplemail@mail.ru'],
-    #)
 
     if created:
         # Создание содержимого письма на основе html шаблона
@@ -32,7 +26,7 @@ def notify_about_new_client(sender, instance, created, **kwargs):
             subject='First Class',
             body='',
             from_email=DEFAULT_FROM_EMAIL,
-            to=['example@mail.ru'],
+            to=[instance.email],
         )
 
         # Указание контента
