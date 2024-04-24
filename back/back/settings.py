@@ -15,13 +15,11 @@ from pathlib import Path
 from decouple import config
 from dotenv import load_dotenv, find_dotenv
 
-
-# load_dotenv(find_dotenv('../.env'))
-load_dotenv()
+load_dotenv(find_dotenv('../.env'))
+# load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -33,7 +31,6 @@ SECRET_KEY = 'django-insecure-8)uza&*m0@^wz-*a*om&nlp-%kmi60vmazuii8s!8cakvpx#*2
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
-
 
 # Application definition
 
@@ -89,7 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'back.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -99,7 +95,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -119,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -130,7 +124,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -147,15 +140,15 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # console/smtp
-EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST = 'smtp.gmail.com'
 # Если мы собираемся использовать SSl, то порт будет другой.
-EMAIL_USE_SSL = True
-EMAIL_PORT = 465
-EMAIL_USE_TLS = False
-# EMAIL_PORT = 587
+EMAIL_USE_SSL = False
+# EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv('ACCOUNT_NAME')
 # Здесь должен быть пароль приложения, а не аккаунта.
 EMAIL_HOST_PASSWORD = os.getenv('ACCOUNT_PASSWORD')
-DEFAULT_FROM_EMAIL = f'{os.getenv('ACCOUNT_NAME')}@yandex.ru'
+DEFAULT_FROM_EMAIL = f'{os.getenv('ACCOUNT_NAME')}@gmail.com'
+# DEFAULT_FROM_EMAIL = os.getenv('ACCOUNT_NAME') + '@yandex.ru'
